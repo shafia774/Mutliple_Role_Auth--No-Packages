@@ -1,7 +1,7 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-light sidebar sidebar-light accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
         <div class="sidebar-brand-icon">
         <img height="40px" width="40px" src="{{ asset('/images/admin-panel/roles.png') }}">
         </div>
@@ -12,8 +12,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
-        <a class="nav-link" href="index.html">
+    <li class="nav-item {{ (strpos(Route::currentRouteName(), 'home') == 0) ? 'active' : '' }}">
+        <a class="nav-link" href="{{route('home')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -23,7 +23,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Interface
+        Settings
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -31,13 +31,15 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Components</span>
+            <span>Preferences</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="buttons.html">Buttons</a>
-                <a class="collapse-item" href="cards.html">Cards</a>
+                <h6 class="collapse-header">options:</h6>
+                <a class="collapse-item" href="countries">Countries</a>
+                <a class="collapse-item" href="states">State</a>
+                <a class="collapse-item" href="districts">District</a>
+                <a class="collapse-item" href="pincodes">Pincode</a>
             </div>
         </div>
     </li>
@@ -70,14 +72,13 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-            aria-controls="collapsePages">
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Pages</span>
         </a>
-        <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
-            data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Login Screens:</h6>
                 <a class="collapse-item" href="login.html">Login</a>
@@ -86,7 +87,7 @@
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
                 <a class="collapse-item" href="404.html">404 Page</a>
-                <a class="collapse-item active" href="blank.html">Blank Page</a>
+                <a class="collapse-item" href="blank.html">Blank Page</a>
             </div>
         </div>
     </li>

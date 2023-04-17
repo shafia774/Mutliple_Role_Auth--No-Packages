@@ -12,5 +12,6 @@ class Pincode extends Model
     protected $fillable = [
         'name',
         'district',
+        'status',
     ];
 }

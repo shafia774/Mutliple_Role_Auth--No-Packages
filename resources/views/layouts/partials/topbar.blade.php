@@ -1,4 +1,34 @@
 <!-- Topbar -->
+@guest
+
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+    <!-- Sidebar Toggle (Topbar) -->
+    <div class="ml-5">
+        <img height="40px" width="40px" src="{{ asset('/images/admin-panel/roles.png') }}">
+    </div>
+    <div class="sidebar-brand-text mx-3">{{ config('app.name', 'Laravel') }}
+         <sup>S</sup>
+    </div>
+
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+
+        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+        <li class="nav-item dropdown no-arrow d-sm-none">
+            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+            </a>
+        </li>
+
+        <div class="topbar-divider d-none d-sm-block"></div>
+                
+    </ul>
+
+</nav>
+
+@else
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
@@ -48,6 +78,7 @@
         </li>
 
         <div class="topbar-divider d-none d-sm-block"></div>
+        
 
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
@@ -79,8 +110,11 @@
                 </a>
             </div>
         </li>
+        
 
     </ul>
 
 </nav>
+
+@endguest
 <!-- End of Topbar -->

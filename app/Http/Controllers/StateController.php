@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\State;
+use App\Models\Countries;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class StateController extends Controller
      */
     public function index()
     {
-        //
+        $states = State::orderBy('name')->paginate(10);
+        return view('admin/states/index', compact('states'));
     }
 
     /**
@@ -21,7 +23,8 @@ class StateController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Countries::orderBy('name')->get();
+        return view('admin/states/create', compact('countries'));
     }
 
     /**
@@ -29,7 +32,18 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'country' => 'required',
+            'status' => 'required',
+        ]);
+
+        $states =state::create([
+            'name' => $request->name,
+            'country_id' => $request->country,
+            'status' => $request->status
+        ]);
+        return redirect()->route('states.index');
     }
 
     /**
@@ -37,7 +51,7 @@ class StateController extends Controller
      */
     public function show(State $state)
     {
-        //
+        return $state;
     }
 
     /**
@@ -45,7 +59,8 @@ class StateController extends Controller
      */
     public function edit(State $state)
     {
-        //
+        $countries = Countries::orderBy('name')->get();
+        return view('admin/states/edit', compact('state','countries'));
     }
 
     /**
@@ -53,7 +68,16 @@ class StateController extends Controller
      */
     public function update(Request $request, State $state)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'country' => 'required',
+            'status' => 'required',
+        ]);
+        $state->name = $request->name;
+        $state->country_id = $request->country;
+        $state->status = $request->status;
+        $state->save();
+        return redirect()->route('states.index');
     }
 
     /**
@@ -61,6 +85,7 @@ class StateController extends Controller
      */
     public function destroy(State $state)
     {
-        //
+        $state->delete();        
+        return redirect()->route('states.index');
     }
 }

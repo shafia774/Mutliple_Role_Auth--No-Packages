@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('district_id');
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

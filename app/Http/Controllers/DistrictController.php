@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\District;
+use App\Models\State;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        //
+        $districts = District::orderBy('name')->paginate(10);
+        return view('admin/districts/index', compact('districts'));
     }
 
     /**
@@ -21,7 +23,9 @@ class DistrictController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Countries::orderBy('name')->get();
+        $states = State::orderBy('name')->get();
+        return view('admin/districts/create', compact('states'));
     }
 
     /**
@@ -29,7 +33,18 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'state' => 'required',
+            'status' => 'required',
+        ]);
+
+        $districts =District::create([
+            'name' => $request->name,
+            'state' => $request->state,
+            'status' => $request->status
+        ]);
+        return redirect()->route('districts.index');
     }
 
     /**
@@ -37,7 +52,7 @@ class DistrictController extends Controller
      */
     public function show(District $district)
     {
-        //
+        return $district;
     }
 
     /**
@@ -45,7 +60,7 @@ class DistrictController extends Controller
      */
     public function edit(District $district)
     {
-        //
+        return view('admin/districts/edit', compact('district'));
     }
 
     /**
@@ -53,7 +68,16 @@ class DistrictController extends Controller
      */
     public function update(Request $request, District $district)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'state' => 'required',
+            'status' => 'required',
+        ]);
+        $district->name = $request->name;
+        $district->state = $request->state;
+        $district->status = $request->status;
+        $district->save();
+        return redirect()->route('districts.index');
     }
 
     /**
@@ -61,6 +85,7 @@ class DistrictController extends Controller
      */
     public function destroy(District $district)
     {
-        //
+        $district->delete();        
+        return redirect()->route('districts.index');
     }
 }

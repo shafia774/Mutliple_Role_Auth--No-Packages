@@ -21,6 +21,9 @@
     <!-- Custom styles for this template-->
     @vite('resources/admin_panel/css/sb-admin-2.min.css')
 
+     <!-- Custom styles for this Tables -->
+    @vite('resources/admin_panel/vendor/datatables/dataTables.bootstrap4.min.css')
+
 </head>
 
 <body id="page-top">
@@ -33,7 +36,7 @@
         <!-- End of Sidebar -->
         @include('layouts/partials.sidebar')
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column bg-light">
 
             <!-- Main Content -->
             <div id="content">
@@ -43,7 +46,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid ">
                     @yield('content')
                 </div>
                 <!-- /.container-fluid -->
@@ -101,6 +104,13 @@
 
     <!-- Custom scripts for all pages-->
     @vite('resources/admin_panel/js/sb-admin-2.min.js')
+
+    <!--  Table page level plugins -->
+    @vite('resources/admin_panel/vendor/datatables/jquery.dataTables.min.js')
+    @vite('resources/admin_panel/vendor/datatables/dataTables.bootstrap4.min.js')
+
+    <!--  Table page custom scripts -->
+    @vite('resources/admin_panel/js/demo/datatables-demo.js')
 
 </body>
 
