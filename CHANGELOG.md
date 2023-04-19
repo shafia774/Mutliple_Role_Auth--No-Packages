@@ -1,5 +1,10 @@
 # Release Notes
 
+## V-2.1.1
+
+- admin routes,small fix
+
+
 ## V-2.1.0
 
 - UI countries,uiedit

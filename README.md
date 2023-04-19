@@ -5,7 +5,7 @@ This is Authentication project With Multiple Roles
 - No Packages Are used
 - Non dynamic roles 
 
-Current Version 2.1.0
+Current Version 2.1.1
 Laravel Version - 10
 
 ## New Features
@@ -36,3 +36,7 @@ Laravel Version - 10
 - the end it 
 
         npm run build 
+
+- To set up admin
+
+        php artisan app:create-admin       
