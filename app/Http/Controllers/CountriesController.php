@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Countries;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Enums\Status;
-use Illuminate\Validation\Rules\Enum;
+
 
 class CountriesController extends Controller
 {
@@ -36,7 +35,7 @@ class CountriesController extends Controller
         $request->validate([
             'name' => 'required',
             'countrycode' => 'required',
-            'status' => ['required', new Enum(Status::class)],
+            'status' => 'required',
         ]);
 
         $countries =Countries::create([
@@ -71,7 +70,7 @@ class CountriesController extends Controller
         $request->validate([
             'name' => 'required',
             'countrycode' => 'required',
-            'status' => ['required', new Enum(Status::class)],
+            'status' => 'required',
 
         ]);
 

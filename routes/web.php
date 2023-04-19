@@ -13,18 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CountriesController;
-use App\Http\Controllers\DistrictController;
-use App\Http\Controllers\StateController;
-use App\Http\Controllers\PincodeController;
-use App\Http\Controllers\CustomerController;
 
 
 Auth::routes(['register' => false]);
 
-Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(['auth','user-role:Admin']);;
-Route::resource('countries', CountriesController::class);
-Route::resource('districts', DistrictController::class);
-Route::resource('states', StateController::class);
-Route::resource('picodes', PincodeController::class);
-Route::resource('customers', CustomerController::class);
+// Admin Routes
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(['auth','user-role:Admin']);
