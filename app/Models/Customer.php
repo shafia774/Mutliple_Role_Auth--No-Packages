@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\ConstantStatus;
 
 class Customer extends Model
 {
@@ -18,5 +19,9 @@ class Customer extends Model
         'wallet',
         'status',
         'f_uid',
+    ];
+
+    protected $casts = [
+        'status' => ConstantStatus::class,
     ];
 }

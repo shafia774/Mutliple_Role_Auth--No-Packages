@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Logics\Status;
+use App\Enums\ConstantStatus;
+
 
 class Countries extends Model
 {
@@ -16,5 +17,8 @@ class Countries extends Model
         'status',
     ];
 
+    protected $casts = [
+        'status' => ConstantStatus::class,
+    ];
 
 }

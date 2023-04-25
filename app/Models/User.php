@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Enums\ConstantStatus;
 
 class User extends Authenticatable
 {
@@ -44,7 +45,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'status' => ConstantStatus::class,
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class,  'user_id');
+    }
 
     protected function role(): Attribute
     {

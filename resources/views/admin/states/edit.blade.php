@@ -51,13 +51,11 @@
 
             <!-- Status -->
             <div class="form-group row">
-                <label for="status" class="col-md-4 col-form-label text-md-right">Status</label>
-
-                <div class="col-md-6">
-                    <label for="status1" class=" col-form-label text-md-right" >Active</label>
-                    <input id="status1" type="radio" class="@error('status') is-invalid @enderror" name="status" value="1" autofocus {{ $state->status == 1 ? 'checked' : '' }}><br>
-                    <label for="status2" class="col-form-label text-md-right">Inactive</label>
-                    <input id="status2" type="radio" class="@error('status') is-invalid @enderror" name="status" value="0" autofocus {{ $state->status == 0 ? 'checked' : '' }}>                    
+                <label  class="col-md-4 col-form-label text-md-right">Status</label>
+                <div class="custom-control custom-switch  col-md-6 m-2">
+                    <input  type="hidden" class="custom-control-input" name="status" value="{{\App\Enums\ConstantStatus::INACTIVE}}" autofocus >
+                    <input id="status" type="checkbox" class="custom-control-input" name="status"  value="{{$state->status == \App\Enums\ConstantStatus::INACTIVE ? \App\Enums\ConstantStatus::INACTIVE : \App\Enums\ConstantStatus::ACTIVE }}" autofocus {{ $status == \App\Enums\ConstantStatus::ACTIVE ? 'checked' : '' }}>
+                    <label id="statuslabel" class="custom-control-label" for="status">{{$state->status == \App\Enums\ConstantStatus::INACTIVE ? \App\Enums\ConstantStatus::INACTIVE : \App\Enums\ConstantStatus::ACTIVE }}</label>         
                     @error('status')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -76,5 +74,19 @@
         </form>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+
+        $('#status').click(function() {
+            var value = $(this).val();
+            var newValue = this.checked ? "{{\App\Enums\ConstantStatus::ACTIVE}}" : "{{\App\Enums\ConstantStatus::INACTIVE}}";
+            $(this).val(newValue);
+            console.log(newValue)
+            $("#statuslabel").text(this.checked ? "Active" : "Inactive");
+        });
+    });
+</script>
 
 @endsection

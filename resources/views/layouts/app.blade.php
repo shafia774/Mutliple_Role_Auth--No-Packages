@@ -13,6 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Roles') }}</title>
+    <link rel="shortcut icon" href="{{ asset('/images/admin-panel/roles.png') }}">
 
     <!-- Custom fonts for this template-->
     @vite('resources/admin_panel/vendor/fontawesome-free/css/all.min.css')
@@ -47,6 +48,18 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid ">
+                    
+                    <!-- Errors -->
+                    @if ($errors->any())
+                        <div class="alert alert-danger dismissible sticky-bottom fade show m-3">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     @yield('content')
                 </div>
                 <!-- /.container-fluid -->

@@ -6,6 +6,9 @@ use App\Models\State;
 use App\Models\Countries;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Enums\ConstantStatus;
+use Illuminate\Validation\Rules\Enum;
 
 class StateController extends Controller
 {
@@ -32,18 +35,24 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'country' => 'required',
-            'status' => 'required',
+        $validator = Validator::make($request->all(),[
+            'name' => ['required', 'string', 'max:255'],
+            'country' => ['required', 'numeric', 'max:255', "exists:countries,id"],
+            'status' => ['required', new Enum(ConstantStatus::class)],
         ]);
-
-        $states =state::create([
-            'name' => $request->name,
-            'country_id' => $request->country,
-            'status' => $request->status
-        ]);
-        return redirect()->route('states.index');
+        if ($validator->passes()) {
+            $states =State::create([
+                'name' => $validator->safe()->name,
+                'country_id' => $validator->safe()->country,
+                'status' => $validator->safe()->status
+            ]);
+            return redirect()->route('states.index');   
+        }else{
+            return redirect()
+                ->route('states.create')
+                ->withErrors($validator)
+                ->withInput();
+        }
     }
 
     /**
@@ -60,7 +69,8 @@ class StateController extends Controller
     public function edit(State $state)
     {
         $countries = Countries::orderBy('name')->get();
-        return view('admin/states/edit', compact('state','countries'));
+        $status = $state->status;
+        return view('admin/states/edit', compact('state','countries','status'));
     }
 
     /**
@@ -68,16 +78,24 @@ class StateController extends Controller
      */
     public function update(Request $request, State $state)
     {
-        $request->validate([
-            'name' => 'required',
-            'country' => 'required',
-            'status' => 'required',
+        $validator = Validator::make($request->all(),[
+            'name' => ['required', 'string', 'max:255'],
+            'country' => ['required', 'numeric', 'max:255', "exists:countries,id"],
+            'status' => ['required', new Enum(ConstantStatus::class)],
         ]);
-        $state->name = $request->name;
-        $state->country_id = $request->country;
-        $state->status = $request->status;
-        $state->save();
-        return redirect()->route('states.index');
+        if ($validator->passes()) {
+            $state->name = $validator->safe()->name;
+            $state->country_id = $validator->safe()->country;
+            $state->status = $validator->safe()->status;
+            $state->save();
+            return redirect()->route('states.index');
+        }else{
+            return redirect()
+                ->route('countries.edit' ,$state->id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+        
     }
 
     /**

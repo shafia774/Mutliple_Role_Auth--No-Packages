@@ -5,7 +5,7 @@ This is Authentication project With Multiple Roles
 - No Packages Are used
 - Non dynamic roles 
 
-Current Version 2.1.1
+Current Version 3.0.0
 Laravel Version - 10
 
 ## New Features

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('countrycode');
-            $table->boolean('status')->default(false);
+            $table->enum('status',['Inactive','Active']);
             $table->timestamps();
         });
     }

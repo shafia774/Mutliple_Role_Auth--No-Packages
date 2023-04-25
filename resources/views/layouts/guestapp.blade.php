@@ -44,6 +44,18 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid ">
+
+                    <!-- Errors -->
+                    @if ($errors->any())
+                        <div class="alert alert-danger dismissible sticky-bottom fade show m-3">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     @yield('content')
                 </div>
                 <!-- /.container-fluid -->

@@ -2,17 +2,15 @@
 
 
 @section('content')
-
-
-<h1 class="h3 mb-2 text-gray-800">Countries</h1>
-<p class="mb-4">Add countries</p>
+<h1 class="h3 mb-2 text-gray-800">Vendors</h1>
+<p class="mb-4">Add Vendors</p>
 
 <div class="card shadow mb-4 rounded">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Add Countries</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Add Vendors</h6>
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ route('countries.store') }}">
+        <form method="POST" action="{{ route('vendors.store') }}">
             @csrf
             <!-- name -->
             <div class="form-group row">
@@ -29,20 +27,66 @@
                 </div>
             </div>
 
-            <!-- Country Code -->
+            <!-- Mobile -->
             <div class="form-group row">
-                <label for="countrycode" class="col-md-4 col-form-label text-md-right">{{ __('Country Code') }}</label>
+                <label for="mobile" class="col-md-4 col-form-label text-md-right">{{ __('Mobile No') }}</label>
 
                 <div class="col-md-6">
-                    <input id="countrycode" type="text" class="form-control @error('countrycode') is-invalid @enderror" name="countrycode" value="{{ old('countrycode') }}" required autocomplete="countrycode" autofocus>
+                    <input id="mobile" type="number" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile" autofocus>
 
-                    @error('countrycode')
+                    @error('mobile')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
             </div>
+
+            <!-- Email -->
+            <div class="form-group row">
+                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+
+                <div class="col-md-6">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group row">
+                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                <div class="col-md-6">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
+
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group row">
+                <label for="password_confirmation" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                <div class="col-md-6">
+                    <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" value="{{ old('password_confirmation') }}" required autocomplete="password_confirmation" autofocus>
+
+                    @error('password_confirmation')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
 
             <!-- Status -->
             <div class="form-group row">
@@ -69,7 +113,6 @@
         </form>
     </div>
 </div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -78,7 +121,7 @@
             var value = $(this).val();
             // var newValue = this.checked ? "{{\App\Enums\ConstantStatus::ACTIVE}}" : "{{\App\Enums\ConstantStatus::INACTIVE}}";
             // $(this).val(newValue);
-            console.log(value)
+            console.log(newValue)
             $("#statuslabel").text(this.checked ? "Active" : "Inactive");
         });
     });

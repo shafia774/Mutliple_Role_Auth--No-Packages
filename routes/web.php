@@ -18,4 +18,4 @@ use App\Http\Controllers\HomeController;
 Auth::routes(['register' => false]);
 
 // Admin Routes
-Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(['auth','user-role:Admin']);
+Route::get('/', [HomeController::class, 'index'])->name('home');

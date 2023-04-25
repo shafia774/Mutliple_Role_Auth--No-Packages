@@ -2,6 +2,10 @@
 
 ## V-2.1.1
 
+- vendor user,Enums
+
+## V-2.1.1
+
 - admin routes,small fix
 
 

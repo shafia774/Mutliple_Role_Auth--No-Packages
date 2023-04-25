@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('f_uid')->nullable();
             $table->string('image');
             $table->biginteger('wallet')->default(0);
-            $table->boolean('status')->default(false);
+            $table->enum('status',['Inactive','Active']);
             $table->timestamps();
         });
     }

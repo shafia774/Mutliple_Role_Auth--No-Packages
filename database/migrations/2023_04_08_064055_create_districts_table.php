@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('state_id');
             $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
-            $table->boolean('status')->default(false);
+            $table->enum('status',['Inactive','Active']);
             $table->timestamps();
         });
     }

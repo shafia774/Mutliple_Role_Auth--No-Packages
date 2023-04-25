@@ -37,7 +37,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">options:</h6>
                 <a class="collapse-item" href="{{route('countries.index')}}">Countries</a>
-                <a class="collapse-item" href="states">State</a>
+                <a class="collapse-item" href="{{route('states.index')}}">State</a>
                 <a class="collapse-item" href="districts">District</a>
                 <a class="collapse-item" href="pincodes">Pincode</a>
             </div>
@@ -63,12 +63,29 @@
         </div>
     </li>
 
+    <!-- Nav Item - Users Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
+            aria-expanded="true" aria-controls="collapseUsers">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Users</span>
+        </a>
+        <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Users</h6>
+                <a class="collapse-item" href="{{route('vendors.index')}}">Vendor</a>
+                <a class="collapse-item" href="register.html">Farmers</a>
+                <a class="collapse-item" href="forgot-password.html">Customers</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Addons
+        Vendors
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->

@@ -18,13 +18,16 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\PincodeController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\VendorController;
 
 
 
 // Admin Routes
-
-Route::resource('countries', CountriesController::class);
-Route::resource('districts', DistrictController::class);
-Route::resource('states', StateController::class);
-Route::resource('picodes', PincodeController::class);
-Route::resource('customers', CustomerController::class);
+Route::middleware(['auth','user-role:Admin,Vendor'])->group(function () {
+    Route::resource('countries', CountriesController::class);
+    Route::resource('districts', DistrictController::class);
+    Route::resource('states', StateController::class);
+    Route::resource('picodes', PincodeController::class);
+    Route::resource('customers', CustomerController::class);
+    Route::resource('vendors', VendorController::class);
+});
